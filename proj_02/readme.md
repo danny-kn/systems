@@ -1,5 +1,5 @@
-# UNIX Shell Interface Implementation
+# Simple UNIX Shell Interface Implementation
 
-Please refer to the following for more information:
+Please refer to the following diagram for a high-level overview:
 
 ![...](img/img.png)
