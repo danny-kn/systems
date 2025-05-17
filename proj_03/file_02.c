@@ -5,9 +5,9 @@
 
 int shared_ct = 0;
 
-void *thread_func(void *arg) {
+void *thread_fun(void *arg) {
   int j = 0;
-  while (j < MAX_VAL) {
+  while (j < MAX_NUM_ITER) {
     shared_ct++;
     j++;
   }
@@ -16,8 +16,8 @@ void *thread_func(void *arg) {
 
 int main(void) {
   pthread_t tid_01, tid_02;
-  pthread_create(&tid_01, NULL, thread_func, NULL);
-  pthread_create(&tid_02, NULL, thread_func, NULL);
+  pthread_create(&tid_01, NULL, thread_fun, NULL);
+  pthread_create(&tid_02, NULL, thread_fun, NULL);
   pthread_join(tid_01, NULL);
   pthread_join(tid_02, NULL);
   printf("shared_ct is %d.\n", shared_ct);
