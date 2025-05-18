@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include "bit_encode.h"
 
+unsigned char generate_key() {
+  printf("please enter a four bit key: ");
+}
+
 unsigned char rotate_left(unsigned char x) {
   unsigned char y = 0xc0; // | 1100 | 0000 |
   return ((x << 2) | (x & y) >> 6);
