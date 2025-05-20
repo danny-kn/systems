@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
-#include "main.h"
+#include "signal_handling.h"
 
 int ct = 0;
 
