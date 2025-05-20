@@ -6,11 +6,12 @@
 int ct = 0;
 
 void sigint_handler(int sig) {
-  // TODO: need to implement.
+  printf("SIGINT: %d\n", ++ct);
 }
 
 void sigquit_handler(int sig) {
-  // TODO: need to implement.
+  printf("SIGQUIT: ct = %d\n", ct);
+  exit(EXIT_SUCCESS);
 }
 
 int main(void) {
