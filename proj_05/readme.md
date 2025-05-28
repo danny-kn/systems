@@ -28,7 +28,7 @@ Run the program with three command-line arguments:
 ```
 
 __Parameters:__
-- `sleep_time`: Duration (in seconds) for the program to run before terminating.
+- `sleep_time`: Duration (in seconds) for the program to execute before terminating.
 - `num_pthreads`: Number of producer threads to create.
 - `num_cthreads`: Number of consumer threads to create.
 
