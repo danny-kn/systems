@@ -13,11 +13,11 @@ sem_t num_full, num_empty;
 int in = 0, out = 0, ct = 0;
 
 int main(int argc, char *argv[]) {
-  validate_usr_input(argc);
-  // input validation?
+  validate_num_args(argc);
   time_t sleep_time = atoi(argv[1]);
   int num_pthreads = atoi(argv[2]);
   int num_cthreads = atoi(argv[3]);
+  validate_usr_input(sleep_time, num_pthreads, num_cthreads);
   init_mutex(&mutex);
   init_sem(&num_full, 0, 0);
   init_sem(&num_empty, 0, BUF_SIZE);

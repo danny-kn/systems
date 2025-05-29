@@ -13,7 +13,7 @@ In this exercise, I implement a solution to a classic bounded-buffer problem usi
 
 - __Thread Management:__
   - __Producer Threads:__ Generates random integers and inserts them into the buffer using `insert_item()`.
-  - __Consumer Threads:__ Removes items from the buffer in FIFO order using `remove_item()`.
+  - __Consumer Threads:__ Removes items from the buffer in first-in-first-out (i.e., FIFO) order using `remove_item()`.
   - __Thread Creation:__ Custom `thread_create()` function with comprehensive error handling.
 
 - __Key Functions:__
@@ -28,7 +28,7 @@ Run the program with three command-line arguments:
 ```
 
 __Parameters:__
-- `sleep_time`: Duration (in seconds) for the program to run before terminating.
+- `sleep_time`: Duration (in seconds) for the program to execute before terminating.
 - `num_pthreads`: Number of producer threads to create.
 - `num_cthreads`: Number of consumer threads to create.
 

@@ -7,9 +7,24 @@
 #include <time.h>
 #include "bounded_buf.h"
 
-void validate_usr_input(int argc) {
+void validate_num_args(int argc) {
   if (argc != 4) {
     fprintf(stderr, "usage: ./bounded_buf <sleep_time> <num_pthreads> <num_cthreads>\n");
+    exit(EXIT_FAILURE);
+  }
+}
+
+void validate_usr_input(time_t sleep_time, int num_pthreads, int num_cthreads) {
+  if (sleep_time <= 0) {
+    fprintf(stderr, "usage: <sleep_time> must be greater than 0\n");
+    exit(EXIT_FAILURE);
+  }
+  if (num_pthreads <= 0) {
+    fprintf(stderr, "usage: <num_pthreads> must be greater than 0\n");
+    exit(EXIT_FAILURE);
+  }
+  if (num_cthreads <= 0) {
+    fprintf(stderr, "usage: <num_cthreads> must be greater than 0\n");
     exit(EXIT_FAILURE);
   }
 }
@@ -33,7 +48,7 @@ void *producer(void *param) {
   while (true) {
     sleep(rand() % 3);
     item = rand() % 8000;
-    if (insert_item(item) < 0) {
+    if (insert_item(item) != 0) {
       // fprintf(stderr, "insert_item() failed.\n");
       perror("insert_item");
       pthread_exit(NULL);
@@ -48,7 +63,7 @@ void *consumer(void *param) {
   srand(time(NULL) + pthread_self());
   while (true) {
     sleep(rand() % 3);
-    if (remove_item(&item) < 0) {
+    if (remove_item(&item) != 0) {
       // fprintf(stderr, "remove_item() failed.\n");
       perror("remove_item");
       pthread_exit(NULL);
@@ -58,33 +73,25 @@ void *consumer(void *param) {
 }
 
 int insert_item(buf_item item) {
-  // sem_wait(&num_empty);
   lock_sem(&num_empty);
-  // mutex_lock(&mutex);
   lock_mutex(&mutex);
   buf[in] = item;
   in = (in + 1) % BUF_SIZE;
   ct++;
   printf("producer: item = %d\n", item);
-  // mutex_unlock(&mutex);
   unlock_mutex(&mutex);
-  // sem_post(&num_full);
   unlock_sem(&num_full);
   return 0;
 }
 
 int remove_item(buf_item *item) {
-  // sem_wait(&num_full);
   lock_sem(&num_full);
-  // mutex_lock(&mutex);
   lock_mutex(&mutex);
   *item = buf[out];
   out = (out + 1) % BUF_SIZE;
   ct--;
   printf("consumer: item = %d\n", *item);
-  // mutex_unlock(&mutex);
   unlock_mutex(&mutex);
-  // sem_post(&num_empty);
   unlock_sem(&num_empty);
   return 0;
 }

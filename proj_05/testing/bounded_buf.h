@@ -10,7 +10,8 @@ extern pthread_mutex_t mutex;
 extern sem_t num_full, num_empty;
 extern int in, out, ct;
 
-void validate_usr_input(int argc);
+void validate_num_args(int argc);
+void validate_usr_input(time_t sleep_time, int num_pthreads, int num_cthreads);
 
 void thread_create(pthread_t *tid, pthread_attr_t *attr, void *(*fun)(void *), void *arg, int num_threads);
 

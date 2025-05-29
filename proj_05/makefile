@@ -1,6 +1,6 @@
 CC=gcc
-CFLAGS=-g -std=c99 -Wall -Wextra
-LDFLAGS=-lpthread
+CFLAGS=-g -Wall -Wextra
+LDFLAGS=-pthread
 PROJ=proj_05
 SOURCES=bounded_buf.c bounded_buf_utils.c
 OBJECTS=$(SOURCES:.c=.o)
