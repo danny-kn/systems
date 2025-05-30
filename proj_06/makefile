@@ -1,7 +1,7 @@
 CC=gcc
-CFLAGS=-g
+CFLAGS=-g -Wall -Wextra
 PROJ=proj_06
-SOURCES=signal_handling.c
+SOURCES=signal_handling.c signal_handling_utils.c
 OBJECTS=$(SOURCES:.c=.o)
 TARGET=signal_handling
 all: $(PROJ).zip $(TARGET)

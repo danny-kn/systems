@@ -1,22 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <signal.h>
+#include <stdbool.h>
+#include <unistd.h>
 #include "signal_handling.h"
 
-int ct = 0;
-
-void sigint_handler(int sig) {
-  printf("SIGINT: %d\n", ++ct);
-}
-
-void sigquit_handler(int sig) {
-  printf("SIGQUIT: ct = %d\n", ct);
-  exit(EXIT_SUCCESS);
-}
-
 int main(void) {
-  signal(SIGINT, sigint_handler);
-  signal(SIGQUIT, sigquit_handler);
-  while (true) { }
+  setup_signal_handlers();
+  while (true) {
+    pause();
+    if (sigint_flag) {
+      sigint_flag = 0;
+      printf("SIGINT: ct = %d\n", ct);
+    }
+    if (sigquit_flag) {
+      sigquit_flag = 0;
+      printf("SIGQUIT: ct = %d\n", ct);
+      break;
+    }
+  }
   return EXIT_SUCCESS;
 }
