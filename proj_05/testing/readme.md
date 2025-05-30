@@ -14,7 +14,7 @@ In this exercise, I implement a solution to a classic bounded-buffer problem usi
 - __Thread Management:__
   - __Producer Threads:__ Generates random integers and inserts them into the buffer using `insert_item()`.
   - __Consumer Threads:__ Removes items from the buffer in first-in-first-out (i.e., FIFO) order using `remove_item()`.
-  - __Thread Creation:__ Custom `thread_create()` function with comprehensive error handling.
+  - __Thread Creation:__ A custom `thread_create()` function with comprehensive error handling.
 
 - __Key Functions:__
   - `insert_item(buf_item item)`: Synchronizes producer access to buffer insertion.
@@ -41,4 +41,4 @@ This runs the program for 6 seconds with 3 producer threads and 2 consumer threa
 
 ## References
 
-- _Operating System Concepts (8th Edition) by Silberschatz, Galvin, and Gagne_.
+_Operating System Concepts (8th Edition) by Silberschatz, Galvin, and Gagne_.
