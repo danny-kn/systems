@@ -42,4 +42,4 @@ __Example Session:__
 
 ## References
 
-You may refer to the documentation for the `sigaction()` and `pause()` system calls using the `man 2 sigaction` and `man 2 pause` commands, respectively.
+You may refer to the documentation for `sigaction()` and `pause()` system calls using the `man 2 sigaction` and `man 2 pause` commands, respectively.

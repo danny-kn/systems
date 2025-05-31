@@ -34,12 +34,12 @@ __Program Behavior:__
 __Example Session:__
 ```bash
 ./signal_handling
-SIGINT: ct = 1
-SIGINT: ct = 2
-SIGINT: ct = 3
-SIGQUIT: ct = 3
+^CSIGINT: ct = 1
+^CSIGINT: ct = 2
+^CSIGINT: ct = 3
+^\SIGQUIT: ct = 3
 ```
 
 ## References
 
-You may refer to the documentation for the `sigaction()` and `pause()` system calls using the `man 2 sigaction` and `man 2 pause` commands, respectively.
+You may refer to the documentation for `sigaction()` and `pause()` system calls using the `man 2 sigaction` and `man 2 pause` commands, respectively.
