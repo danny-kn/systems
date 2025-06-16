@@ -1,0 +1,298 @@
+cse_4252/labs/lab_5
+❯ pwd
+/home/danny/Documents/osu/cse_4252/labs/lab_5
+
+cse_4252/labs/lab_5
+❯ ls
+Answers.txt  a.out  classes.cpp  Lab5_1.txt  Lab5_2.txt  lab_5.pdf  main.cpp  Readme
+
+cse_4252/labs/lab_5
+❯ ls -alrt
+total 140
+-r-------- 1 danny danny 106913 Nov 18 21:09 lab_5.pdf
+drwxr-xr-x 1 danny danny     58 Nov 18 21:11 ..
+-rw-r--r-- 1 danny danny      0 Nov 18 22:57 Lab5_1.txt
+-rw-r--r-- 1 danny danny    346 Nov 18 22:59 main.cpp
+-rw-r--r-- 1 danny danny      0 Nov 18 22:59 Readme
+-rw-r--r-- 1 danny danny      0 Nov 18 23:00 Lab5_2.txt
+drwxr-xr-x 1 danny danny    140 Nov 18 23:27 .
+-rwxr-xr-x 1 danny danny  16992 Nov 18 23:27 a.out
+-rw-r--r-- 1 danny danny   1614 Nov 18 23:28 classes.cpp
+-rw-r--r-- 1 danny danny   3374 Nov 18 23:36 Answers.txt
+
+cse_4252/labs/lab_5
+❯ cat classes.cpp
+// classes.cpp
+// author: danny kan (kan.74@osu.edu)
+
+#include <iostream>
+using namespace std;
+
+class A {
+protected:
+	int var;
+public:
+	A() { var = 0; }
+	void increment() { var++; }
+	virtual void decrement() { var--; }
+
+	// void print() { cout << "var = " << var << endl; }
+	virtual void print() { cout << "var = " << var << endl; }
+};
+
+class B : public A {
+	protected:
+		int varB; // add a protected variabled varB to B as requested...
+	public:
+		B() { varB = 0; } // add a constructor to B to initilize varB to 0 as requested...
+		void increment() { var += 3; }
+		virtual void decrement() { var -= 3; }
+
+		// add a print() method in B so that both var and varB are printed...
+		void print() { cout << "var = " << var << "; varB = " << varB << endl; }
+		// virtual void print() { cout << "var = " << var << "; varB = " << varB << endl; }
+};
+
+A func(A x) { return x; }
+
+// this is the main func.
+int main(int argc, char *argv[]) {
+// 	A a;
+// 	A * ptr;
+// 	ptr = &a; // pointer ptr is currently pointing to the memory address of object a of class A...
+// 	ptr -> increment();
+// 	ptr -> print();
+// 	ptr -> decrement();
+// 	ptr -> print();
+//
+// 	B b; // add an object b of class B as requested...
+// 	ptr = &b; // set the pointer ptr to point to the memory address of object b of class B as requested...
+//
+// 	ptr -> increment(); // call increment()
+// 	ptr -> print(); // call print()
+// 	ptr -> decrement(); // call decrement()
+// 	ptr -> print(); // call print()
+
+	// A a;
+	// B b;
+	// A * ptr;
+	// a = b;
+	// a.print();
+	// ptr = &a;
+	// ptr -> print();
+
+	B b;
+	b.A::print();
+	func(b).print();
+
+	return 0;
+}
+
+cse_4252/labs/lab_5
+❯ vim classes.cpp
+
+cse_4252/labs/lab_5 took 51s
+❯ cat classes.cpp
+// classes.cpp
+// author: danny kan (kan.74@osu.edu)
+
+#include <iostream>
+using namespace std;
+
+class A {
+protected:
+	int var;
+public:
+	A() { var = 0; }
+	void increment() { var++; }
+	virtual void decrement() { var--; }
+
+	// void print() { cout << "var = " << var << endl; }
+	virtual void print() { cout << "var = " << var << endl; }
+};
+
+class B : public A {
+	protected:
+		int varB; // add a protected variabled varB to B as requested...
+	public:
+		B() { varB = 0; } // add a constructor to B to initilize varB to 0 as requested...
+		void increment() { var += 3; }
+		virtual void decrement() { var -= 3; }
+
+		// add a print() method in B so that both var and varB are printed...
+		void print() { cout << "var = " << var << "; varB = " << varB << endl; }
+		// virtual void print() { cout << "var = " << var << "; varB = " << varB << endl; }
+};
+
+A func(A x) { return x; }
+
+// this is the main func.
+int main(int argc, char *argv[]) {
+ 	A a;
+ 	A * ptr;
+	ptr = &a; // pointer ptr is currently pointing to the memory address of object a of class A...
+ 	ptr -> increment();
+ 	ptr -> print();
+ 	ptr -> decrement();
+ 	ptr -> print();
+
+ 	B b; // add an object b of class B as requested...
+ 	ptr = &b; // set the pointer ptr to point to the memory address of object b of class B as requested...
+
+ 	ptr -> increment(); // call increment()
+ 	ptr -> print(); // call print()
+ 	ptr -> decrement(); // call decrement()
+ 	ptr -> print(); // call print()
+
+	// A a;
+	// B b;
+	// A * ptr;
+	// a = b;
+	// a.print();
+	// ptr = &a;
+	// ptr -> print();
+
+	// B b;
+	// b.A::print();
+	// func(b).print();
+
+	return 0;
+}
+
+cse_4252/labs/lab_5
+❯ g++ classes.cpp
+
+cse_4252/labs/lab_5
+❯ pw
+zsh: command not found: pw
+
+cse_4252/labs/lab_5
+❯ pwd
+/home/danny/Documents/osu/cse_4252/labs/lab_5
+
+cse_4252/labs/lab_5
+❯ ls
+Answers.txt  a.out  classes.cpp  Lab5_1.txt  Lab5_2.txt  lab_5.pdf  main.cpp  Readme
+
+cse_4252/labs/lab_5
+❯ ls -lart
+total 140
+-r-------- 1 danny danny 106913 Nov 18 21:09 lab_5.pdf
+drwxr-xr-x 1 danny danny     58 Nov 18 21:11 ..
+-rw-r--r-- 1 danny danny      0 Nov 18 22:57 Lab5_1.txt
+-rw-r--r-- 1 danny danny    346 Nov 18 22:59 main.cpp
+-rw-r--r-- 1 danny danny      0 Nov 18 22:59 Readme
+-rw-r--r-- 1 danny danny      0 Nov 18 23:00 Lab5_2.txt
+-rw-r--r-- 1 danny danny   3374 Nov 18 23:36 Answers.txt
+-rw-r--r-- 1 danny danny   1592 Nov 18 23:38 classes.cpp
+drwxr-xr-x 1 danny danny    140 Nov 18 23:38 .
+-rwxr-xr-x 1 danny danny  16960 Nov 18 23:38 a.out
+
+cse_4252/labs/lab_5
+❯ ./a.out
+var = 1
+var = 0
+var = 1; varB = 0
+var = -2; varB = 0
+
+cse_4252/labs/lab_5
+❯ vim Answers.txt
+
+cse_4252/labs/lab_5 took 3s
+❯ cat Answers.txt
+Question 1. In main add an object b of class B. Set the pointer ptr to point to b. Add a
+protected variable varB to B and a constructor to initialize it to 0. Add a print() method in B
+so that both var and varB are printed. Which print method is called on the object B referenced
+by ptr? If needed, change method declarations so that the print method of B is called for the
+B object. What did you need to change and why?
+
+Solution.
+* In main add an object b of class B.
+	Complete! Please refer to classes.cpp for more information...
+* Set the pointer ptr to point to b.
+	Complete! Please refer to classes.cpp for more information...
+* Add a protected variable varB to B and a constructor to initialize it to 0.
+	Complete! Please refer to classes.cpp for more information...
+* Add a print() method in B so that both var and varB are printed.
+	Complete! Please refer to classes.cpp for more information...
+Which print method is called on the object B referenced by ptr?
+	Initially, when attempting to call the print method on the object B referenced by ptr, the print
+	method of class A gets called since it is not virtual. By making the print method of class A virtual,
+	we ensure that polymorphism can kick in at runtime to make the appropriate call to a print method.
+	In other words, we can override the implementation of the print method such that it outputs the print
+	method of B when a pointer ptr points to an object of class B
+If needed, change method declarations so that the print method of B is called for the
+B object. What did you need to change and why?
+	I made the print method of class A virtual to ensure that the appropriate method gets called. So, it depends
+	on the object that the pointer ptr points to.
+
+Here is the output prior to changing the print method to virtual:
+	var = 1
+	var = 0
+	var = 1
+	var = -2
+
+Here is the output after changing the print method to virtual:
+	var = 1
+	var = 0
+	var = 1; varB = 0
+	var = -2; varB = 0
+
+---
+
+Question 2. Assuming that a is a variable of type A, b is an object of type B, and ptr is the
+pointer of type A, what would you expect to be printed by the following statement:
+
+	a = b;
+	a.print();
+	ptr = &a;
+	ptr -> print();
+
+What gets printed? Why? Explain the difference in behavior between this example and Question 1.
+
+Solution.
+Here is what gets printed:
+	var = 0
+	var = 0
+
+The reason why it gets printed is because at the beginning, we have that a = b, which causes slicing,
+where only the A portion of the B object b is copied to a. So, a.print() calls the print
+method of class A. Similarly, ptr = &a means that ptr points to an object of class A
+and ptr -> print() calls its print method.
+
+---
+
+Question 3. What happens if you have an object b of class B and you call the print method like
+this: b.A::print()?
+
+Solution.
+Here is the output:
+	var = 0
+
+We can directly specify which method to use and from which class.
+
+---
+
+Question 4. Write a function that takes an object of class A and returns it. Can you pass an
+object of a class B to this function?
+
+Solution.
+Please refer to the following:
+
+A func(A x) { return x; }
+
+Yes, we can also pass an object of a class B to this function.
+
+---
+
+Question 5. What happens if you change the declaration
+
+class B : public A
+to
+class B : A ?
+
+Solution.
+If we change the declaration freom class B : public A to class B : A, then it automatically default to private.
+
+cse_4252/labs/lab_5
+❯

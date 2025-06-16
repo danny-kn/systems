@@ -1,0 +1,280 @@
+cse_4252/labs/lab_3
+❯ pwd
+/home/danny/Documents/osu/cse_4252/labs/lab_3
+
+cse_4252/labs/lab_3
+❯ ls
+arrayPointer  arrayPointer.cpp  Lab3_1-copy.txt  Lab3_1.txt  lab3.pdf  refSegFault  refSegFault.cpp
+
+cse_4252/labs/lab_3
+❯ ls -alrt
+total 184
+drwxr-xr-x 1 danny danny     30 Oct  7 01:35 ..
+-rw-r--r-- 1 danny danny   2796 Oct  7 20:28 arrayPointer.cpp
+-rwxr-xr-x 1 danny danny  16656 Oct  7 20:28 arrayPointer
+-rw-r--r-- 1 danny danny  18324 Oct  7 20:30 Lab3_1-copy.txt
+-rw-r--r-- 1 danny danny   6678 Oct  7 20:30 Lab3_1.txt
+-r-------- 1 danny danny 112342 Oct  7 20:30 lab3.pdf
+-rw-r--r-- 1 danny danny   1000 Oct  7 21:54 refSegFault.cpp
+-rwxr-xr-x 1 danny danny  15952 Oct  7 21:54 refSegFault
+drwxr-xr-x 1 danny danny    174 Oct  7 22:00 .
+
+cse_4252/labs/lab_3
+❯ script Lab3_2.txt
+Script started, output log file is 'Lab3_2.txt'.
+
+cse_4252/labs/lab_3
+❯ pwd
+/home/danny/Documents/osu/cse_4252/labs/lab_3
+
+cse_4252/labs/lab_3
+❯ ls
+arrayPointer  arrayPointer.cpp  Lab3_1-copy.txt  Lab3_1.txt  Lab3_2.txt  lab3.pdf  refSegFault  refSegFault.cpp
+
+cse_4252/labs/lab_3
+❯ ls -alrt
+total 184
+drwxr-xr-x 1 danny danny     30 Oct  7 01:35 ..
+-rw-r--r-- 1 danny danny   2796 Oct  7 20:28 arrayPointer.cpp
+-rwxr-xr-x 1 danny danny  16656 Oct  7 20:28 arrayPointer
+-rw-r--r-- 1 danny danny  18324 Oct  7 20:30 Lab3_1-copy.txt
+-rw-r--r-- 1 danny danny   6678 Oct  7 20:30 Lab3_1.txt
+-r-------- 1 danny danny 112342 Oct  7 20:30 lab3.pdf
+-rw-r--r-- 1 danny danny   1000 Oct  7 21:54 refSegFault.cpp
+-rwxr-xr-x 1 danny danny  15952 Oct  7 21:54 refSegFault
+-rw-r--r-- 1 danny danny      0 Oct  7 22:00 Lab3_2.txt
+drwxr-xr-x 1 danny danny    194 Oct  7 22:00 .
+
+cse_4252/labs/lab_3
+❯ touch refSegFault.cpp
+
+cse_4252/labs/lab_3
+❯ touch refSegFault
+
+cse_4252/labs/lab_3
+❯ pwd
+/home/danny/Documents/osu/cse_4252/labs/lab_3
+
+cse_4252/labs/lab_3
+❯ ls
+arrayPointer  arrayPointer.cpp  Lab3_1-copy.txt  Lab3_1.txt  Lab3_2.txt  lab3.pdf  refSegFault  refSegFault.cpp
+
+cse_4252/labs/lab_3
+❯ ls -alrt
+total 188
+drwxr-xr-x 1 danny danny     30 Oct  7 01:35 ..
+-rw-r--r-- 1 danny danny   2796 Oct  7 20:28 arrayPointer.cpp
+-rwxr-xr-x 1 danny danny  16656 Oct  7 20:28 arrayPointer
+-rw-r--r-- 1 danny danny  18324 Oct  7 20:30 Lab3_1-copy.txt
+-rw-r--r-- 1 danny danny   6678 Oct  7 20:30 Lab3_1.txt
+-r-------- 1 danny danny 112342 Oct  7 20:30 lab3.pdf
+drwxr-xr-x 1 danny danny    194 Oct  7 22:00 .
+-rw-r--r-- 1 danny danny   1000 Oct  7 22:00 refSegFault.cpp
+-rwxr-xr-x 1 danny danny  15952 Oct  7 22:00 refSegFault
+-rw-r--r-- 1 danny danny   4096 Oct  7 22:00 Lab3_2.txt
+
+cse_4252/labs/lab_3
+❯ cat refSegFault.cpp
+#include <iostream>
+
+using namespace std;
+
+/* func. prototype */
+// int &getRefVar();
+
+/* it does not work since we are returning an alias (i.e., a reference) to an object
+	whose lifetime is limited to the scope of the function call */
+// int &getRefVar() { /* https://stackoverflow.com/questions/4643713/returning-a-reference-to-a-local-variable-in-c */
+	// int val = 32;
+	// return val;
+// }
+
+/* this is the main func. */
+int main(int argc, char *argv[]) {
+	/* --- question 1 --- */
+	/* define the var. ptr as a pointer to an int data type; initialize it as a null pointer */
+	int *ptr = nullptr;
+	/* initialize the var. ref as a reference to the dereferenced value of the var. ptr, which is technically a null pointer */
+	int &ref = *ptr; /* this line of code will cause a segmentation fault since we are attempting to dereference a null pointer */
+	cout << ref << endl;
+	/* --- question 1 --- */
+
+	/* --- question 2 --- */
+	// cout << getRefVar() << endl;
+	/* --- question 2 --- */
+
+	return 0;
+}
+
+cse_4252/labs/lab_3
+❯ g++ -o refSegFault refSegFault.cpp
+
+cse_4252/labs/lab_3
+❯ pwd
+/home/danny/Documents/osu/cse_4252/labs/lab_3
+
+cse_4252/labs/lab_3
+❯ ls
+arrayPointer  arrayPointer.cpp  Lab3_1-copy.txt  Lab3_1.txt  Lab3_2.txt  lab3.pdf  refSegFault  refSegFault.cpp
+
+cse_4252/labs/lab_3
+❯ ls -alrt
+total 192
+drwxr-xr-x 1 danny danny     30 Oct  7 01:35 ..
+-rw-r--r-- 1 danny danny   2796 Oct  7 20:28 arrayPointer.cpp
+-rwxr-xr-x 1 danny danny  16656 Oct  7 20:28 arrayPointer
+-rw-r--r-- 1 danny danny  18324 Oct  7 20:30 Lab3_1-copy.txt
+-rw-r--r-- 1 danny danny   6678 Oct  7 20:30 Lab3_1.txt
+-r-------- 1 danny danny 112342 Oct  7 20:30 lab3.pdf
+-rw-r--r-- 1 danny danny   1000 Oct  7 22:00 refSegFault.cpp
+-rw-r--r-- 1 danny danny   8192 Oct  7 22:01 Lab3_2.txt
+drwxr-xr-x 1 danny danny    194 Oct  7 22:01 .
+-rwxr-xr-x 1 danny danny  15952 Oct  7 22:01 refSegFault
+
+cse_4252/labs/lab_3
+❯ ./refSegFault
+[1]    35201 segmentation fault (core dumped)  ./refSegFault
+
+cse_4252/labs/lab_3
+❯ vim refSegFault.cpp
+
+cse_4252/labs/lab_3 took 31s
+❯ cat refSegFault.cpp
+#include <iostream>
+
+using namespace std;
+
+/* func. prototype */
+// int &getRefVar();
+
+/* it does not work since we are returning an alias (i.e., a reference) to an object
+	whose lifetime is limited to the scope of the function call */
+int &getRefVar() { /* https://stackoverflow.com/questions/4643713/returning-a-reference-to-a-local-variable-in-c */
+	int val = 32;
+	return val;
+}
+
+/* this is the main func. */
+int main(int argc, char *argv[]) {
+	/* --- question 1 --- */
+	/* define the var. ptr as a pointer to an int data type; initialize it as a null pointer */
+	// int *ptr = nullptr;
+	/* initialize the var. ref as a reference to the dereferenced value of the var. ptr, which is technically a null pointer */
+	// int &ref = *ptr; /* this line of code will cause a segmentation fault since we are attempting to dereference a null pointer */
+	// cout << ref << endl;
+	/* --- question 1 --- */
+
+	/* --- question 2 --- */
+	cout << getRefVar() << endl;
+	/* --- question 2 --- */
+
+	return 0;
+}
+
+cse_4252/labs/lab_3
+❯ pwd
+/home/danny/Documents/osu/cse_4252/labs/lab_3
+
+cse_4252/labs/lab_3
+❯ ls
+arrayPointer  arrayPointer.cpp  Lab3_1-copy.txt  Lab3_1.txt  Lab3_2.txt  lab3.pdf  refSegFault  refSegFault.cpp
+
+cse_4252/labs/lab_3
+❯ ls -alrt
+total 212
+drwxr-xr-x 1 danny danny     30 Oct  7 01:35 ..
+-rw-r--r-- 1 danny danny   2796 Oct  7 20:28 arrayPointer.cpp
+-rwxr-xr-x 1 danny danny  16656 Oct  7 20:28 arrayPointer
+-rw-r--r-- 1 danny danny  18324 Oct  7 20:30 Lab3_1-copy.txt
+-rw-r--r-- 1 danny danny   6678 Oct  7 20:30 Lab3_1.txt
+-r-------- 1 danny danny 112342 Oct  7 20:30 lab3.pdf
+-rwxr-xr-x 1 danny danny  15952 Oct  7 22:01 refSegFault
+-rw-r--r-- 1 danny danny  28672 Oct  7 22:01 Lab3_2.txt
+-rw-r--r-- 1 danny danny    994 Oct  7 22:02 refSegFault.cpp
+drwxr-xr-x 1 danny danny    194 Oct  7 22:02 .
+
+cse_4252/labs/lab_3
+❯ g++ -o refSegFault refSegFault.cpp
+refSegFault.cpp: In function ‘int& getRefVar()’:
+refSegFault.cpp:12:16: warning: reference to local variable ‘val’ returned [-Wreturn-local-addr]
+   12 |         return val;
+      |                ^~~
+refSegFault.cpp:11:13: note: declared here
+   11 |         int val = 32;
+      |             ^~~
+
+cse_4252/labs/lab_3
+❯ ./refSegFault
+[1]    35570 segmentation fault (core dumped)  ./refSegFault
+
+cse_4252/labs/lab_3
+❯ vim refSegFault.cpp
+
+cse_4252/labs/lab_3 took 27s
+❯ cat refSegFault.cpp
+#include <iostream>
+
+using namespace std;
+
+/* func. prototype */
+// int &getRefVar();
+
+/* it does not work since we are returning an alias (i.e., a reference) to an object
+	whose lifetime is limited to the scope of the function call */
+// int &getRefVar() { /* https://stackoverflow.com/questions/4643713/returning-a-reference-to-a-local-variable-in-c */
+	// int val = 32;
+	// return val;
+// }
+
+/* this is the main func. */
+int main(int argc, char *argv[]) {
+	/* --- question 1 --- */
+	/* define the var. ptr as a pointer to an int data type; initialize it as a null pointer */
+	int *ptr = nullptr;
+	/* initialize the var. ref as a reference to the dereferenced value of the var. ptr, which is technically a null pointer */
+	int &ref = *ptr; /* this line of code will cause a segmentation fault since we are attempting to dereference a null pointer */
+	cout << ref << endl;
+	/* --- question 1 --- */
+
+	/* --- question 2 --- */
+	// cout << getRefVar() << endl;
+	/* --- question 2 --- */
+
+	return 0;
+}
+
+cse_4252/labs/lab_3
+❯ g++ -o refSegFault refSegFault.cpp
+
+cse_4252/labs/lab_3
+❯ pwd
+/home/danny/Documents/osu/cse_4252/labs/lab_3
+
+cse_4252/labs/lab_3
+❯ ls
+arrayPointer  arrayPointer.cpp  Lab3_1-copy.txt  Lab3_1.txt  Lab3_2.txt  lab3.pdf  refSegFault  refSegFault.cpp
+
+cse_4252/labs/lab_3
+❯ ls -alrt
+total 240
+drwxr-xr-x 1 danny danny     30 Oct  7 01:35 ..
+-rw-r--r-- 1 danny danny   2796 Oct  7 20:28 arrayPointer.cpp
+-rwxr-xr-x 1 danny danny  16656 Oct  7 20:28 arrayPointer
+-rw-r--r-- 1 danny danny  18324 Oct  7 20:30 Lab3_1-copy.txt
+-rw-r--r-- 1 danny danny   6678 Oct  7 20:30 Lab3_1.txt
+-r-------- 1 danny danny 112342 Oct  7 20:30 lab3.pdf
+-rw-r--r-- 1 danny danny   1000 Oct  7 22:03 refSegFault.cpp
+drwxr-xr-x 1 danny danny    194 Oct  7 22:03 .
+-rwxr-xr-x 1 danny danny  15952 Oct  7 22:03 refSegFault
+-rw-r--r-- 1 danny danny  57344 Oct  7 22:03 Lab3_2.txt
+
+cse_4252/labs/lab_3
+❯ ./refSegFault
+[1]    35895 segmentation fault (core dumped)  ./refSegFault
+
+cse_4252/labs/lab_3
+❯ exit
+Script done.
+
+cse_4252/labs/lab_3 took 3m11s
+❯

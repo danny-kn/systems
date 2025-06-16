@@ -1,0 +1,199 @@
+__Author:__ Danny Kan {kan.74@osu.edu}
+
+_I certify that I completed all of the work myself with no aid from anyone aside from the instructor or the undergraduate graders._
+
+# Part 1: Encryption
+
+---
+
+## Question 1
+
+In this exercise, I would like to include the following files for testing the functionality of our program:
+
+- `test1.input` (contains a total of 8 characters to encrypt.)
+- `test1.output` (contains the _obtained_ 7 encrypted characters.)
+- `test1.expected` (contains the _expected_ 7 encrypted characters.)
+
+For instance, in `test1.input` and `test1.output`, we have the following encryption algorithm:
+
+D --->  68 ---> 0100 0100 ---> 0100 0100 --->  68
+
+a --->  97 ---> 0110 0001 ---> 1110 0001 ---> 225
+
+n ---> 110 ---> 0110 1110 ---> 1110 1110 ---> 238
+
+n ---> 110 ---> 0110 1110 ---> 1101 1110 ---> 222
+
+y ---> 121 ---> 0111 1001 ---> 1111 0001 ---> 241
+
+K --->  75 ---> 0100 1011 ---> 1001 0111 ---> 151
+
+a --->  97 ---> 0110 0001 ---> 1100 0011 ---> 195
+
+n ---> 110 ---> 0110 1110 = __KEY__
+
+_Please note that every eighth character's bit pattern is used to encrypt the seven preceding characters. To run the program, execute the `./encrypt < test1.input > test1.output` command after compiling using `gcc -ansi -pedantic -Wimplicit-function-declaration -Wreturn-type -g -o encrypt encrypt.c`._
+
+_Note: we could use the `diff test1.expected test1.output` command to ensure adequate results. This test file covers the case when there are exactly 8 characters, which may be considered a routine test case in unit testing._
+
+- test2.input (contains a total of 4 characters to encrypt.)
+- test2.output (contains the _obtained_ output.)
+- test2.expected (contains the _expected_ output.)
+
+For instance, in `test2.input` and `test2.output`, we have the following encryption algorithm:
+
+ m ---> 109 ---> 0110 1101 ---> 0110 1101 --->  m ---> 109
+
+ s ---> 115 ---> 0111 0011 ---> 0111 0011 --->  s ---> 115
+
+ g ---> 103 ---> 0110 0111 ---> 0110 0111 --->  g ---> 103
+
+LF --->  10 ---> 0000 1010 ---> 0000 1010 ---> LF --->  10
+
+_Please note that every eighth character's bit pattern is used to encrypt the seven preceding characters. To run the program, execute the `./encrypt < test2.input > test2.output` command after compiling using `gcc -ansi -pedantic -Wimplicit-function-declaration -Wreturn-type -g -o encrypt encrypt.c`._
+
+_Note: we could use the `diff test2.expected test2.output` command to ensure adequate results. This test file covers the case when there are less than 8 characters, which may be considered a boundary test case in unit testing._
+
+- test3.input (contains a total of 22 characters to encrypt.)
+- test3.output (contains the _obtained_ 20 encrypted characters.)
+- test3.expected (contains the _expected_ 20 encrypted characters.)
+
+For instance, in `test3.input` and `test3.output`, we have the following encryption algorithm:
+
+ C --->  67 ---> 0100 0011 ---> 0100 0011 --->  67
+
+ o ---> 111 ---> 0110 1111 ---> 1010 1111 ---> 175
+
+ l ---> 108 ---> 0110 1100 ---> 1100 1100 ---> 204
+
+ l ---> 108 ---> 0110 1100 ---> 1100 1100 ---> 204
+
+ e ---> 101 ---> 0110 0101 ---> 1100 0101 ---> 197
+
+ g ---> 103 ---> 0110 0111 ---> 1100 1111 ---> 207
+
+ e ---> 101 ---> 0110 0101 ---> 1100 1001 ---> 201
+
+   --->  32 ---> 0010 0000 ---> __KEY__
+
+ o ---> 111 ---> 0110 1111 ---> 0110 1111 ---> 111
+
+ f ---> 102 ---> 0110 0110 ---> 1110 0110 ---> 230
+
+   --->  32 ---> 0010 0000 ---> 0110 0000 --->  96
+
+ E --->  69 ---> 0100 0101 ---> 1001 0101 ---> 149
+
+ n ---> 110 ---> 0110 1110 ---> 1101 0110 ---> 214
+
+ g ---> 103 ---> 0110 0111 ---> 1100 1111 ---> 207
+
+ i ---> 105 ---> 0110 1001 ---> 1101 0011 ---> 211
+
+ n ---> 110 ---> 0110 1110 ---> __KEY__
+
+ e ---> 101 ---> 0110 0101 ---> 0110 0101 --->  e ---> 101
+
+ e ---> 101 ---> 0110 0101 ---> 0110 0101 --->  e ---> 101
+
+ r ---> 114 ---> 0111 0010 ---> 0111 0010 --->  r ---> 114
+
+ i ---> 105 ---> 0110 1001 ---> 0110 1001 --->  i ---> 105
+
+ n ---> 110 ---> 0110 1110 ---> 0110 1110 --->  n ---> 110
+
+ g ---> 103 ---> 0110 0111 ---> 0110 0111 --->  g ---> 103
+
+_Please note that every eighth character's bit pattern is used to encrypt the seven preceding characters. To run the program, execute the `./encrypt < test3.input > test3.output` command after compiling using `gcc -ansi -pedantic -Wimplicit-function-declaration -Wreturn-type -g -o encrypt encrypt.c`._
+
+_Note: we could use the `diff test3.expected test3.output` command to ensure adequate results. This test file covers the case when there are more than 8 characters, which may be considered a challenging test case in unit testing. I chose this specific file to ensure encryption in batches of 8 characters (i.e., multiples of 8 characters.)._
+
+## Question 2
+
+Please refer to the following:
+
+D --->  68 ---> 0100 0100 ---> 0100 0100 --->  68
+
+a --->  97 ---> 0110 0001 ---> 1110 0001 ---> 225
+
+n ---> 110 ---> 0110 1110 ---> 1110 1110 ---> 238
+
+n ---> 110 ---> 0110 1110 ---> 1101 1110 ---> 222
+
+y ---> 121 ---> 0111 1001 ---> 1111 0001 ---> 241
+
+K --->  75 ---> 0100 1011 ---> 1001 0111 ---> 151
+
+a --->  97 ---> 0110 0001 ---> 1100 0011 ---> 195
+
+n ---> 110 ---> 0110 1110 = __KEY__
+
+_I chose this specific character sequence since it consists of my first and last name, which is not challenging to remember lol._
+
+## Question 3
+
+From an algorithmic perspective, our encryption scheme is kinda lazy since it consists of the _key_ bit pattern running diagonally from left to right. We could prompt the user to enter a 4-bit key pattern, duplicate it to generate an 8-bit key pattern, and then use it to encrypt our data. Similarly, we may utilize `left_rotate`, `right_rotate`, and the XOR operation.
+
+## Question 4
+
+We may implement various encryption and decryption functions in our source file. Then, provided a user input (e.g., 1 to execute algorithm 1, 2 to execute algorithm 2, etc.), we may perform a function call to those specific encryption schemes in the `main` function. For instance, if the user enters 1, we execute the first encryption algorithm. And, if the user enters 2, we execute the second encryption algorithm. Currently, we only have one encryption scheme implemented, which processes characters in batches of 8; however, we may also process them in batches of 6 by modifying the `BATCH_SIZE` macro.
+
+# Part 2: Decryption
+
+---
+
+## Question 1
+
+As described in the reading, this specific encryption/decryption scheme needs to be revised since it fails when the number of characters after encryption is a multiple of 7. Let us proceed with a simple example. Suppose there are _exactly_ 8 plaintext characters. In that case, we use the eighth character's bit pattern to encrypt the 7 preceding characters, generating a new batch of 7 characters that may or may not be different from our original batch. And, if there are _exactly_ 7 plaintext characters, then we do not encrypt them and output the result. However, our current decryption scheme cannot distinguish whether those characters have already been encrypted or are part of the original batch of starting characters. Thus, it may attempt to decrypt characters that are not encrypted and generate a bunch of gibberish.
+
+## Question 2
+
+We may keep track of the number of encrypted batches and use this information to ensure we do not decrypt more than the number of encrypted batches.
+
+__THIS IS IMPORTANT...__
+
+_Please note that the reading did not explicitly state this information since the encryption / decryption scheme was designed to fail._
+The complete and working program (i.e., encryption / decryption scheme) consists of the following files:
+
+- `main.h`
+- `main.c`
+- `encrypt_copy.c` (contains our _encryption_ scheme.)
+- `decrypt_copy.c` (contains our _decryption_ scheme.)
+- `max_val` { contains _the number of encrypted batches_ from `encrypt_copy.c` }
+- `main.input` (contains our _plaintext characters_.)
+- `main.output` (contains our _encrypted plaintext characters_.)
+- `main.expected` (contains our _decrypted plaintext characters_.)
+
+Please refer to the following compilation command(s):
+
+`gcc -ansi -pedantic -Wimplicit-function-declaration -Wreturn-type -g -o encrypt_copy encrypt_copy.c main.c`
+`./encrypt_copy < main.input > main.output`
+
+`gcc -ansi -pedantic -Wimplicit-function-declaration -Wreturn-type -g -o decrypt_copy decrypt_copy.c main.c`
+`./decrypt_copy < main.output > main.expected`
+
+__THIS IS IMPORTANT...__
+
+Please execute the program (i.e., encryption / decryption scheme) sequentially. For instance, first, encrypt our plaintext characters using the `./encrypt_copy < main.input > main.output` command. Then, decrypt our encrypted plaintext characters using the `./decrypt_copy < main.output > main.expected` command since the correctness of our decryption scheme heavily relies on the number of encrypted batches in `max_val` generated from `encrypt_copy.c`.
+
+# Part 3: Making the Grader's Eyes Bleed...
+
+## Question 1
+
+I chose to mangle a copy of my decryption code since it was the most recent.
+
+## Question 2
+
+It is getting challenging to read and understand the mangled version of my decryption code. In several months, I will not be able to recall how the code achieves its functionality.
+
+## Question 3
+
+It would be more challenging to convert hard-to-read code into clean code. Rewriting code requires an understanding of its functionality. Thus, provided that bad code is more challenging to read and understand, it is more difficult to make it clean.
+
+## Question 4
+
+Our encryption / decryption scheme relies on the assumption that our input data, consisting of plaintext characters, belongs to [0, 127] in decimal notation. In other words, each plaintext character is _exactly_ 8 bits (i.e., 1 byte) in size, and its most significant bit (i.e., MSB) is 0. In short, each plaintext character _must_ have the same size since we construct the key to span diagonally from left to right up to and including the number of plaintext characters.
+
+## Question 5
+
+If this underlying assumption is invalid, our decryption scheme will likely fail because it cannot recover the key embedded within the bits of our encrypted plaintext characters.

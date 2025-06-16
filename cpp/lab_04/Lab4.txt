@@ -1,0 +1,287 @@
+cse_4252/labs/lab4 via C v14.2.1-gcc
+❯ pwd
+/home/danny/Documents/osu/cse_4252/labs/lab4
+
+cse_4252/labs/lab4 via C v14.2.1-gcc
+❯ ls
+Circle.cpp  Circle.h  lab4.pdf  Lab4.txt  test.cpp
+
+cse_4252/labs/lab4 via C v14.2.1-gcc
+❯ ls -alrt
+total 156
+-r-------- 1 danny danny 144134 Oct 24 12:48 lab4.pdf
+drwxr-xr-x 1 danny danny     38 Oct 24 12:49 ..
+drwxr-xr-x 1 danny danny     84 Oct 24 23:40 .
+-rw-r--r-- 1 danny danny    687 Oct 24 23:40 test.cpp
+-rw-r--r-- 1 danny danny      0 Oct 24 23:40 Lab4.txt
+-rw-r--r-- 1 danny danny   2886 Oct 24 23:40 Circle.h
+-rw-r--r-- 1 danny danny   2795 Oct 24 23:40 Circle.cpp
+
+cse_4252/labs/lab4 via C v14.2.1-gcc
+❯ cat Circle.h
+// Circle.h
+#ifndef CIRCLE_H
+#define CIRCLE_H
+
+// attributes
+//              x coordinate (an int), can be negative
+//              y coordinate (an int), can be negative
+//              radius (a double), must be greater than 0.0
+
+// methods
+//              a default constructor that creates a circle of radius 5 at position 0, 0 (completed)
+//              a constructor with parameters for x, y, and radius (completed)
+//              a copy constructor which copies one circle details to the other (n/a)
+//              getters and setters for radius, x, and y coordinate. take care of invalid values for radius. (completed)
+//              void translate(int horizShift, int vertShift) - translates the circle along x and y axis (completed)
+//              double getArea() - returns the circle's area (completed)
+//              void displayCircle() - displays the circle's attributes like this: "Radius: 5.0 at point x = 0, y = 0" (completed)
+//              bool intersect(Circle c) - returns true if c intersects the calling circle (completed)
+//              bool operator == (Circle c) - compares two circles and returns true if both circles have same radius and x, y coordinate else returns false. (completed)
+//              Circle operator + (const Circle &c1, const Circle &c2) - returns a new circle with radius as sum of radius of c1 and c2. Compare the abolute maginutude of the coordinates of both the circles and set the x and y values with the greater value. (completed)
+
+class Circle {
+        public:
+                // default constructor
+                Circle(); // the default constructor
+
+                // a copy constructor which copies one circle details to the other
+                // ...
+
+                // constructor with parameters
+                Circle(int x_coord, int y_coord, double radius);
+
+                // setters that change the values of the attributes
+                void setX(int x_coord); // modifies the x coordinate
+                void setY(int y_coord); // modifies the y coordinate
+                void setRadius(double radius); // modifies the radius
+
+                // getters that return information about the circle, note the const at the end of the method
+                int getX() const; // obtains the x coordinate
+                int getY() const; // obtains the y coordinate
+                double getRadius() const; // obtains the radius
+
+                // translates the circle along x and y values
+                void translate(int horizShift, int verShift);
+
+                // returns the circle's area
+                double getArea() const;
+
+                // displays the circle's attributes like this: "Radius: 5.0 at point x = 0, y = 0"
+                void displayCircle() const;
+
+                // returns true if c intersects the calling circle
+                bool intersect(const Circle &c) const;
+
+                // compares two circles and returns true if both circles have same radius and x, y coordinate else returns false.
+                bool operator == (const Circle &c) const;
+
+                // returns a new circle with radius as sum of radius of c1 and c2. Compare the abolute maginutude of the coordinates of both the circles and set the x and y values with the greater value.
+                Circle operator + (const Circle &c) const;
+
+        private:
+                int x_coord;
+                int y_coord;
+                double radius;
+};
+
+#endif
+
+cse_4252/labs/lab4 via C v14.2.1-gcc
+❯ cat Circle.cpp
+#include <iostream> // include necessary header for input/output stream
+#include <cmath> // include necessary header for mathematical functions
+#include "Circle.h"
+
+using namespace std;
+
+const double PI = 3.14159; // define the value of PI as a constant
+
+/*
+now follows each of the method implementations. the <class>:: that
+preces each method identifies that the function belongs to the class
+*/
+
+// default constructor
+Circle::Circle() {
+        x_coord = 0;
+        y_coord = 0;
+        radius = 5.0;
+}
+
+// constructor to create a new circle with the given values
+Circle::Circle(int x_val, int y_val, double r_val) {
+        x_coord = x_val;
+        y_coord = y_val;
+        if(r_val > 0.0) {
+                radius = r_val;
+        } else {
+                cout << "error: the radius cannot be negative!" << endl;
+                radius = 5.0;
+        }
+}
+
+// setters that change the values of the attributes
+void Circle::setX(int x_val) {
+        x_coord = x_val;
+}
+
+void Circle::setY(int y_val) {
+        y_coord = y_val;
+}
+
+void Circle::setRadius(double r_val) {
+        if(r_val > 0.0) {
+                radius = r_val;
+        } else {
+                cout << "error: the radius cannot be negative!" << endl;
+                radius = r_val;
+        }
+}
+
+// getters that return information about the circle
+int Circle::getX() const {
+        return x_coord;
+}
+
+int Circle::getY() const {
+        return y_coord;
+}
+
+double Circle::getRadius() const {
+        return radius;
+}
+
+// translates the circle along x and y values
+void Circle::translate(int horizShift, int vertShift) {
+        x_coord = x_coord + horizShift;
+        y_coord = y_coord + vertShift;
+}
+
+// returns the circle's area
+double Circle::getArea() const {
+        return PI * pow(radius, 2);
+}
+
+// displays the circle's attributes like this: "Radius: 5.0 at point x = 0, y = 0"
+void Circle::displayCircle() const {
+        cout << "Radius: " << getRadius() << " at point x = " << getX() << ", y = " << getY() << endl;
+}
+
+// returns true if c intersects the calling circle
+bool Circle::intersect(const Circle &c) const {
+        // reference: https://cplusplus.com/forum/general/35377/
+        return (radius + c.radius) >= sqrt(pow(x_coord - c.x_coord, 2) + pow(y_coord - c.y_coord, 2));
+}
+
+// compares two circles and returns true if both circles have same radius and x, y coordinate else returns false.
+bool Circle::operator==(const Circle &c) const {
+        return radius == c.radius && x_coord == c.x_coord && y_coord == c.y_coord;
+}
+
+// returns a new circle with radius as sum of radius of c1 and c2. Compare the abolute magnitude of the coordinates of both the circles and set the x and y values with the greater value.
+Circle Circle::operator+(const Circle &c) const {
+        double r_val = radius + c.radius;
+        int x_val = 0;
+        int y_val = 0;
+
+        if(abs(x_coord) < abs(c.x_coord)) {
+                x_val = c.x_coord;
+        } else {
+                x_val = x_coord;
+        }
+
+        if(abs(y_coord) < abs(c.y_coord)) {
+                y_val = c.y_coord;
+        } else {
+                y_val = y_coord;
+        }
+
+        return Circle(x_val, y_val, r_val);
+}
+
+cse_4252/labs/lab4 via C v14.2.1-gcc
+❯ cat test.cpp
+#include <iostream>
+#include "Circle.h"
+
+using namespace std;
+
+int main(int argc, char *argv[]) {
+        Circle c0;
+        c0.displayCircle();
+
+        Circle c1(3, 3, 10);
+        c1.displayCircle();
+
+        cout << c1.getX() << endl;
+        cout << c1.getY() << endl;
+        cout << c1.getRadius() << endl;
+        cout << c1.getArea() << endl;
+
+        c1.translate(-3, -6);
+        c1.displayCircle();
+
+        Circle c2(6, 9, 6);
+        c2.displayCircle();
+
+        if(c1.intersect(c2)) {
+                cout << "itersect!" << endl;
+        } else {
+                cout << "do not intersect!" << endl;
+        }
+
+        Circle c3(6, 9, 10);
+        if(c2 == c3) {
+                cout << "equal!" << endl;
+        } else {
+                cout << "not equal!" << endl;
+        }
+
+        c3.setX(10);
+        c3.setY(20);
+        c3.setRadius(30);
+        c3.displayCircle();
+
+        return 0;
+}
+
+cse_4252/labs/lab4 via C v14.2.1-gcc
+❯ g++ -o test test.cpp Circle.cpp
+
+cse_4252/labs/lab4 via C v14.2.1-gcc
+❯ pwd
+/home/danny/Documents/osu/cse_4252/labs/lab4
+
+cse_4252/labs/lab4 via C v14.2.1-gcc
+❯ ls
+Circle.cpp  Circle.h  lab4.pdf  Lab4.txt  test  test.cpp
+
+cse_4252/labs/lab4 via C v14.2.1-gcc
+❯ ls -alrt
+total 176
+-r-------- 1 danny danny 144134 Oct 24 12:48 lab4.pdf
+drwxr-xr-x 1 danny danny     38 Oct 24 12:49 ..
+-rw-r--r-- 1 danny danny    687 Oct 24 23:40 test.cpp
+-rw-r--r-- 1 danny danny      0 Oct 24 23:40 Lab4.txt
+-rw-r--r-- 1 danny danny   2886 Oct 24 23:40 Circle.h
+-rw-r--r-- 1 danny danny   2795 Oct 24 23:40 Circle.cpp
+drwxr-xr-x 1 danny danny     92 Oct 24 23:41 .
+-rwxr-xr-x 1 danny danny  17496 Oct 24 23:41 test
+
+cse_4252/labs/lab4 via C v14.2.1-gcc
+❯ ./test
+Radius: 5 at point x = 0, y = 0
+Radius: 10 at point x = 3, y = 3
+3
+3
+10
+314.159
+Radius: 10 at point x = 0, y = -3
+Radius: 6 at point x = 6, y = 9
+itersect!
+not equal!
+Radius: 30 at point x = 10, y = 20
+
+cse_4252/labs/lab4 via C v14.2.1-gcc
+❯

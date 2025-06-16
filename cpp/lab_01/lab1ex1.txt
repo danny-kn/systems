@@ -1,0 +1,55 @@
+Script started on 2024-09-12 14:09:56-04:00 [TERM="xterm-256color" TTY="/dev/pts/6" COLUMNS="92" LINES="30"]
+]0;danny@arch:~/Documents/osu/cse_4252/labs/lab_1[?2004h
+[1;36mcse_4252/labs/lab_1[0m 
+[1;32m❯[0m pwd
+[?2004l/home/danny/Documents/osu/cse_4252/labs/lab_1
+]0;danny@arch:~/Documents/osu/cse_4252/labs/lab_1[?2004h
+[1;36mcse_4252/labs/lab_1[0m 
+[1;32m❯[0m ls
+[?2004lfile1.txt  file2.txt  lab1ex1.txt  lab_1.pdf  mergedex1.txt
+]0;danny@arch:~/Documents/osu/cse_4252/labs/lab_1[?2004h
+[1;36mcse_4252/labs/lab_1[0m 
+[1;32m❯[0m s [K[Kls -alrt
+[?2004ltotal 192
+-r-------- 1 danny danny 180413 Sep 12 12:50 lab_1.pdf
+drwxr-xr-x 1 danny danny     10 Sep 12 12:51 [0m[01;34m..[0m
+-rw-r--r-- 1 danny danny    134 Sep 12 14:02 file1.txt
+-rw-r--r-- 1 danny danny    160 Sep 12 14:06 file2.txt
+-rw-r--r-- 1 danny danny    294 Sep 12 14:07 mergedex1.txt
+-rw-r--r-- 1 danny danny      0 Sep 12 14:09 lab1ex1.txt
+drwxr-xr-x 1 danny danny    102 Sep 12 14:09 [01;34m.[0m
+]0;danny@arch:~/Documents/osu/cse_4252/labs/lab_1[?2004h
+[1;36mcse_4252/labs/lab_1[0m 
+[1;32m❯[0m cat file1.txt
+[?2004lThe Ohio State University
+College of Engineering
+Department of Computer Science and Engineering
+Columbus, Ohio
+Something goes here...
+]0;danny@arch:~/Documents/osu/cse_4252/labs/lab_1[?2004h
+[1;36mcse_4252/labs/lab_1[0m 
+[1;32m❯[0m cat file2.txt
+[?2004l(1) Something else goes here...
+(2) Something else goes here...
+(3) Something else goes here...
+(4) Something else goes here...
+(5) Something else goes here...
+]0;danny@arch:~/Documents/osu/cse_4252/labs/lab_1[?2004h
+[1;36mcse_4252/labs/lab_1[0m 
+[1;32m❯[0m cat mergedex1.txt
+[?2004lThe Ohio State University
+College of Engineering
+Department of Computer Science and Engineering
+Columbus, Ohio
+Something goes here...
+(1) Something else goes here...
+(2) Something else goes here...
+(3) Something else goes here...
+(4) Something else goes here...
+(5) Something else goes here...
+]0;danny@arch:~/Documents/osu/cse_4252/labs/lab_1[?2004h
+[1;36mcse_4252/labs/lab_1[0m 
+[1;32m❯[0m exit
+[?2004lexit
+
+Script done on 2024-09-12 14:11:28-04:00 [COMMAND_EXIT_CODE="0"]

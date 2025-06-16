@@ -1,0 +1,198 @@
+Q1. Required Header. ->
+BY SUBMITTING THIS FILE TO CARMEN, I CERTIFY THAT I HAVE STRICTLY ADHERED TO THE TENURES OF THE OHIO STATE UNIVERSITY'S ACADEMIC INTEGRITY POLICY CONCERNING THIS ASSIGNMENT.
+
+THIS IS THE README FILE FOR LAB 2.
+
+Name: Danny Kan {kan.74@osu.edu}
+
+Q2. Total amount of time in hours (approximate) to complete the entire lab. ->
+It took me about 12 hours to complete the entire lab.
+
+Q3. Short description of any concerns, interesting problems,
+discoveries encountered, or general comments about the lab's contents. ->
+I do not have any concerns regarding the second lab assignment. I was slightly unsure about null-terminating strings, but I am sure I will get used to C's syntax and low-level functional programming. The encryption problem (i.e., implementing the elementary-level bit stream cipher) was interesting. I do not have experience implementing encryption / decryption algorithms, but after completing this lab assignment, I want to learn more about cryptography. Especially how specific algorithms compare in terms of efficiency and combinations they could generate. I will consider taking a course on cryptography here at The Ohio State University to broaden my understanding as a Computer Science and Engineering student.
+
+Q4. Run gdb on your bit_encode1 executable. Enter data here that
+describes the interim values you calculated as you created your
+8-bit key as you read in each separate digit of the 4-digit key.
+Specify the gdb command you used to print the interim values
+and how the values were displayed in gdb. For example, what
+is the key value after you have read and processed the first
+digit of the key, then after you have processed the second digit
+of the key, etc? Printing the key in hexadecimal format might
+help you determine if the value you are creating is correct. ->
+I ran gdb on the bit_encode1 executable using the following command: gdb bit_encode1. Then, I set a breakpoint on line 51 using the following command: break 51. I ran the program by using the following command: run. The 4-bit key that I duplicated to create an 8-bit key was 0xd = 1101.
+
+Initially, key = 0x0.
+
+First iteration:
+Read '1'
+key = 0x0 after key = key << 1
+Since '1', key = 0x1 after key = key | ONE
+
+Second iteration:
+Read '1'
+key = 0x2 after key = key << 1
+Since '1', key = 0x3 after key = key | ONE
+
+Third iteration:
+Read '0'
+key = 0x6 after key = key << 1
+
+Fourth iteration:
+Read '1'
+key = 0xc after key = key << 1
+Since '1', key = 0xd after key = key | ONE
+
+Upon return,
+key << FOUR = 0xd0
+Thus, 0xd0 | 0xd = 0xdd
+
+Hence, the key is 0xdd = 1101 1101.
+
+---
+(.venv) danny@danny-XPS-15-9510:~/Documents/cse2421/lab2$ gdb bit_encode1
+GNU gdb (Ubuntu 12.1-0ubuntu1~22.04) 12.1
+Copyright (C) 2022 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from bit_encode1...
+(gdb) break 51
+Breakpoint 1 at 0x11b4: file bit_encode.c, line 51.
+(gdb) run
+Starting program: /home/danny/Documents/cse2421/lab2/bit_encode1
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+enter cleartext: clear and present danger
+clear and present danger
+hex encoding:
+63 6C 65 61 72 20 61 6E 64 20
+70 72 65 73 65 6E 74 20 64 61
+6E 67 65 72
+
+Breakpoint 1, create_key () at bit_encode.c:51
+51          for(int i = 0; i < FOUR; i++) {
+(gdb) p/x key
+$1 = 0x0
+(gdb) next
+52              ch = getchar();
+(gdb) p/x key
+$2 = 0x0
+(gdb) next
+enter 4-bit key: 1101
+53              key = key << ONE;
+(gdb) p/x key
+$3 = 0x0
+(gdb) next
+54              if (ch == '1') {
+(gdb) p/x key
+$4 = 0x0
+(gdb) next
+55                  key = key | ONE;
+(gdb) p/x key
+$5 = 0x0
+(gdb) next
+51          for(int i = 0; i < FOUR; i++) {
+(gdb) p/x key
+$6 = 0x1
+(gdb) next
+52              ch = getchar();
+(gdb) p/x key
+$7 = 0x1
+(gdb) next
+53              key = key << ONE;
+(gdb) p/x key
+$8 = 0x1
+(gdb) next
+54              if (ch == '1') {
+(gdb) p/x key
+$9 = 0x2
+(gdb) next
+55                  key = key | ONE;
+(gdb) p/x key
+$10 = 0x2
+(gdb) next
+51          for(int i = 0; i < FOUR; i++) {
+(gdb) p/x key
+$11 = 0x3
+(gdb) next
+52              ch = getchar();
+(gdb) p/x key
+$12 = 0x3
+(gdb) next
+53              key = key << ONE;
+(gdb) p/x key
+$13 = 0x3
+(gdb) next
+54              if (ch == '1') {
+(gdb) p/x key
+$14 = 0x6
+(gdb) next
+51          for(int i = 0; i < FOUR; i++) {
+(gdb) p/x key
+$15 = 0x6
+(gdb) next
+52              ch = getchar();
+(gdb) p/x key
+$16 = 0x6
+(gdb) next
+53              key = key << ONE;
+(gdb) p/x key
+$17 = 0x6
+(gdb) next
+54              if (ch == '1') {
+(gdb) p/x key
+$18 = 0xc
+(gdb) next
+55                  key = key | ONE;
+(gdb) p/x key
+$19 = 0xc
+(gdb) next
+51          for(int i = 0; i < FOUR; i++) {
+(gdb) p/x key
+$20 = 0xd
+(gdb) next
+58          return (key << FOUR) | key;
+(gdb) p/x (key << FOUR) | key
+No symbol "FOUR" in current context.
+(gdb) p/x (key << 4) | key
+$21 = 0xdd
+(gdb) exit
+A debugging session is active.
+
+        Inferior 1 [process 298552] will be killed.
+
+Quit anyway? (y or n) y
+---
+
+Q5. If you run gdb for any reason on bit_encode2, describe
+why you chose to do so, what you did, and what you saw. ->
+I ran gdb on the bit_encode2 executable to better understand #ifdef and #endif preprocessor directives for conditional execution. I set a breakpoint in the main function and execute code one line at a time. I noticed that gdb skipped over (i.e., ignored) the code enclosed by the #ifdef and #endif preprocessor directives.
+
+---
+Reading symbols from bit_encode2...
+(gdb) break 155
+Breakpoint 1 at 0x1394: file bit_encode.c, line 155.
+(gdb) run
+Starting program: /home/danny/Documents/cse2421/lab2/bit_encode2
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main () at bit_encode.c:155
+155         get_cleartext();
+(gdb) next
+clear and present danger
+160         unsigned char user_key = create_key();
+(gdb)
+---

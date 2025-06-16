@@ -1,0 +1,16 @@
+-123abc
+0.123
+999
+something goes here... 123
+		something more goes here... 999
+
+...	2001
+80
+	0.0
+0.32
+100
+	abc100
+abc100 200 300 abc 400 500 600
+999,999,999
+	000
+0

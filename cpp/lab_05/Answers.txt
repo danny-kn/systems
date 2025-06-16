@@ -1,0 +1,93 @@
+Question 1. In main add an object b of class B. Set the pointer ptr to point to b. Add a
+protected variable varB to B and a constructor to initialize it to 0. Add a print() method in B
+so that both var and varB are printed. Which print method is called on the object B referenced
+by ptr? If needed, change method declarations so that the print method of B is called for the
+B object. What did you need to change and why?
+
+Solution.
+* In main add an object b of class B.
+	Complete! Please refer to classes.cpp for more information...
+* Set the pointer ptr to point to b.
+	Complete! Please refer to classes.cpp for more information...
+* Add a protected variable varB to B and a constructor to initialize it to 0.
+	Complete! Please refer to classes.cpp for more information...
+* Add a print() method in B so that both var and varB are printed.
+	Complete! Please refer to classes.cpp for more information...
+Which print method is called on the object B referenced by ptr?
+	Initially, when attempting to call the print method on the object B referenced by ptr, the print
+	method of class A gets called since it is not virtual. By making the print method of class A virtual,
+	we ensure that polymorphism can kick in at runtime to make the appropriate call to a print method.
+	In other words, we can override the implementation of the print method such that it outputs the print
+	method of B when a pointer ptr points to an object of class B
+If needed, change method declarations so that the print method of B is called for the
+B object. What did you need to change and why?
+	I made the print method of class A virtual to ensure that the appropriate method gets called. So, it depends
+	on the object that the pointer ptr points to.
+
+Here is the output prior to changing the print method to virtual:
+	var = 1
+	var = 0
+	var = 1
+	var = -2
+
+Here is the output after changing the print method to virtual:
+	var = 1
+	var = 0
+	var = 1; varB = 0
+	var = -2; varB = 0
+
+---
+
+Question 2. Assuming that a is a variable of type A, b is an object of type B, and ptr is the
+pointer of type A, what would you expect to be printed by the following statement:
+
+	a = b;
+	a.print();
+	ptr = &a;
+	ptr -> print();
+
+What gets printed? Why? Explain the difference in behavior between this example and Question 1.
+
+Solution.
+Here is what gets printed:
+	var = 0
+	var = 0
+
+The reason why it gets printed is because at the beginning, we have that a = b, which causes slicing,
+where only the A portion of the B object b is copied to a. So, a.print() calls the print
+method of class A. Similarly, ptr = &a means that ptr points to an object of class A
+and ptr -> print() calls its print method.
+
+---
+
+Question 3. What happens if you have an object b of class B and you call the print method like
+this: b.A::print()?
+
+Solution.
+Here is the output:
+	var = 0
+
+We can directly specify which method to use and from which class.
+
+---
+
+Question 4. Write a function that takes an object of class A and returns it. Can you pass an
+object of a class B to this function?
+
+Solution.
+Please refer to the following:
+
+A func(A x) { return x; }
+
+Yes, we can also pass an object of a class B to this function.
+
+---
+
+Question 5. What happens if you change the declaration
+
+class B : public A
+to
+class B : A ?
+
+Solution.
+If we change the declaration freom class B : public A to class B : A, then it automatically default to private.

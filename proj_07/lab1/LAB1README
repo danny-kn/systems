@@ -1,0 +1,186 @@
+BY SUBMITTING THIS FILE TO CARMEN, I CERTIFY THAT I HAVE STRICTLY ADHERED
+TO THE TENURES OF THE OHIO STATE UNIVERSITY'S ACADEMIC INTEGRITY POLICY
+WITH RESPECT TO THIS ASSIGNMENT.
+
+THIS IS THE README FILE FOR LAB 1.
+
+Name: Danny Kan {kan.74@osu.edu}
+
+1. UNIX is a proprietary system (i.e., you must purchase a license), while Linux is an open-source system. An open-source system, however, is not always "free." Why?
+An open-source system such as Linux is not always "free" since companies that supply Linux distributions may charge for supplemental services not included in the standard version. They may also request users to donate to the open-source project to sustain the development and progression of the software.
+
+2. Name another difference between UNIX/Linux from your required reading.
+Linux is a UNIX-like operating system that responds quickly to bug reports since it is community-driven - primarily due to its open-source nature. Companies maintain the source code for the UNIX operating system, thus making updates less frequent. Anybody can change the source code for Linux to create a new distribution.
+
+3. What made UNIX different from all other commercially available software systems when initially developed?
+Unlike other commercially available software systems, UNIX was centered around the kernel and implemented using C, which made it more code-efficient. In other words, previously, software for one system did not run on another; however, UNIX made it easier to create an operating system that would work on many different types of hardware.
+
+4. What operating system covers the widest range of hardware in the world?
+The Linux operating system covers the widest range of hardware in the world.
+
+5. Why was the C programming language initially created?
+The C programming language was initially created to develop the UNIX operating system.
+
+6. What version of the mkdir command is running on stdlinux? What mkdir option did you use to determine this?
+I am currently dual-booting Windows 11 and Ubuntu 22.04.3 LTS. Using the "mkdir --version" command, I get that mkdir uses version 8.32. However, stdlinux uses version 8.22.
+
+7. What does the wc -l  instruction do? The manual page for that instruction says it prints the newline count, but what important information does that count tell you?
+According to the manual, "wc" prints newline, word, and byte counts for each file, and the "-l" or "--lines" options print the newline counts. In other words, it reports the number of lines in a file. The "wc -l" or the "wc --lines" command allows the user to determine the length of a file by gauging its size in terms of number of lines.
+
+8. Describe one difference between what you observed in the C programming language code in lab1.c and either Java or C++ that you have used before. Describe one similarity.
+For similarities, for-loops, if-statements, curly braces, and semi-colons are used the same between C and Java. For differences, I noticed "#include <stdio.h>", "unsigned," and "#ifdef DEBUG ... #endif". There is no need to include header files in Java. I also do not recall an unsigned data type when I programmed using Java.
+
+9. How is white space (tabs/newlines/returns, spaces, etc.) handled within a C program file? Do you think this "feature" of C program files is good or bad? Why?
+The C compiler ignores white space (tabs/newlines/returns, spaces) within a C program file. I think this feature of C program files is beneficial since it allows the user to format their code to make it more readable. If the C compiler did not ignore white space, it would be more challenging to view, read, and interpret the code.
+
+10. When a line of code is printed out after the next command in gdb, that line of code has just finished executing. True or False?
+It is false. When a line of code is printed out after issuing the next command in gdb, that line of code will execute next. That is, it has not been executed yet.
+
+11. What is the value of getchar_return_value at GDB item #4? Is this what you expected to see?
+The value of getchar_return_value at GDB item #4 is the decimal value 49. I did not expect getchar_return_value to contain the ASCII code associated with the character 1.
+
+12. What is the value of the maxEntries variable at GDB item #5?
+The value of the maxEntries variable at GDB item #5 is the decimal value 15.
+
+13. What were the 15 hexadecimal values in the variable getchar_return_value as it read in each successive value from input?
+The 15 values in the variable getchar_return_value, as it read in each successive value from input, were:
+/c getchar_return_value = 49 '1' (decimal and character)
+/c getchar_return_value = 50 '2' (decimal and character)
+/c getchar_return_value = 51 '3' (decimal and character)
+/c getchar_return_value = 52 '4' (decimal and character)
+/c getchar_return_value = 53 '5' (decimal and character)
+/c getchar_return_value = 54 '6' (decimal and character)
+/c getchar_return_value = 55 '7' (decimal and character)
+/c getchar_return_value = 32 ' ' (decimal and character)
+/c getchar_return_value = 112 'p' (decimal and character)
+/c getchar_return_value = 101 'e' (decimal and character)
+/c getchar_return_value = 97 'a' (decimal and character)
+/c getchar_return_value = 99 'c' (decimal and character)
+/c getchar_return_value = 104 'h' (decimal and character)
+/c getchar_return_value = 101 'e' (decimal and character)
+/c getchar_return_value = 115 's' (decimal and character)
+In hexadecimal, we get:
+/x getchar_return_value = 31 (hexadecimal)
+/x getchar_return_value = 32 (hexadecimal)
+/x getchar_return_value = 33 (hexadecimal)
+/x getchar_return_value = 34 (hexadecimal)
+/x getchar_return_value = 35 (hexadecimal)
+/x getchar_return_value = 36 (hexadecimal)
+/x getchar_return_value = 37 (hexadecimal)
+/x getchar_return_value = 20 (hexadecimal)
+/x getchar_return_value = 70 (hexadecimal)
+/x getchar_return_value = 65 (hexadecimal)
+/x getchar_return_value = 61 (hexadecimal)
+/x getchar_return_value = 63 (hexadecimal)
+/x getchar_return_value = 68 (hexadecimal)
+/x getchar_return_value = 65 (hexadecimal)
+/x getchar_return_value = 73 (hexadecimal)
+
+14. What is the relationship between a digit's ASCII value and its actual value?
+To determine the relationship, we refer to the ASCII table. I noticed that zero (i.e., 0) starts at 48 (dec), one (i.e., 1) at 49 (dec), two (i.e., 2) at 50 (dec), ..., nine (i.e., 9) at 57 (dec). So, we could subtract 48 from the digit's ASCII value to obtain its actual value.
+
+15. How does the output of the program change at GDB item #7 from the prior output?
+By issuing the command "set getchar_return_value = 64" inside gdb, we assigned the first character in "banana", that is the character 'b', to '@' since the ASCII value 64 corresponds to the at symbol according to the ASCII table fround in Piazza. At first, we got the following:
+enter the 6 characters: banana
+---
+b   /c getchar_return_value = 98 'b' (decimal and character)
+a   /c getchar_return_value = 97 'a' (decimal and character)
+n   /c getchar_return_value = 110 'n' (decimal and character)
+a   /c getchar_return_value = 97 'a' (decimal and character)
+n   /c getchar_return_value = 110 'n' (decimal and character)
+a   /c getchar_return_value = 97 'a' (decimal and character)
+---
+At GDB item #7, after the command "set getchar_return_value = 64", we get the following:
+enter the 6 characters: banana
+---
+@   /c getchar_return_value = 64 '@' (decimal and character)
+a   /c getchar_return_value = 97 'a' (decimal and character)
+n   /c getchar_return_value = 110 'n' (decimal and character)
+a   /c getchar_return_value = 97 'a' (decimal and character)
+n   /c getchar_return_value = 110 'n' (decimal and character)
+a   /c getchar_return_value = 97 'a' (decimal and character)
+---
+
+16. Answer the questions asked in item #10 here.
+---
+Are these values what you expected to see? If so, why? If not, what did you observe/learn?
+I did not expect the '\n' character to be added and 'E' missing from the output. I observed an additional character inserted called the line feed (e.g., '\n'), which indicates the occurence of a new line.
+
+This instruction tells the debugger to run the currently debugged program (lab1 in this case) but to
+take all program input from the file lab1.input1 rather than from the keyboard. Go through the program
+looking at how the variables maxEntries and getchar_return_value are set using the input from
+lab1.input1. Are the values set to the values that you expected? Why or why not? Did you learn anything
+that you didn’t know about how input is interpreted? What value showed up between the 5 and the A?
+While examining the program with gdb and using lab1.input1 as input, I noticed that maxEntries = 10, which makes sense since it appears at the beginning of our lab1.input1 file and represents how many characters we want to use in "12345ABCDE". I used gdb to determine the values for the variable "getchar_return_value." Here is the output of the program:
+Please enter the number of entries, followed by the enter/return key: enter the 10 characters: The keyboard values are:
+1   /c getchar_return_value = 49 '1' (decimal and character)
+2   /c getchar_return_value = 50 '2' (decimal and character)
+3   /c getchar_return_value = 51 '3' (decimal and character)
+4   /c getchar_return_value = 52 '4' (decimal and character)
+5   /c getchar_return_value = 53 '5' (decimal and character)
+    /c getchar_return_value = 10 '\n' (decimal and character)
+
+A   /c getchar_return_value = 65 'A' (decimal and character)
+B   /c getchar_return_value = 66 'B' (decimal and character)
+C   /c getchar_return_value = 67 'C' (decimal and character)
+D   /c getchar_return_value = 68 'D' (decimal and character)
+In hexadecimal, we get
+1   /x getchar_return_value = 31 '1' (hexadecimal)
+2   /x getchar_return_value = 32 '2' (hexadecimal)
+3   /x getchar_return_value = 33 '3' (hexadecimal)
+4   /x getchar_return_value = 34 '4' (hexadecimal)
+5   /x getchar_return_value = 35 '5' (hexadecimal)
+    /x getchar_return_value = a '\n' (hexadecimal)
+
+A   /x getchar_return_value = 41 'A' (hexadecimal)
+B   /x getchar_return_value = 42 'B' (hexadecimal)
+C   /x getchar_return_value = 43 'C' (hexadecimal)
+D   /x getchar_return_value = 44 'D' (hexadecimal)
+Note that there is an extra '\n' line feed character between the 5 and the A.
+
+Do the same with the file lab1.input2. Are the values set to the values that you expected? Why or why not?
+While examining the program with gdb and using lab1.input2 as input, I noticed that maxEntries = 10, which makes sense since it appears at the beginning of our lab1.input2 file. I used gdb to determine the values for the variable "getchar_return_value." Here is the output of the program:
+Please enter the number of entries, followed by the enter/return key: enter the 10 characters: The keyboard values are:
+b /c getchar_return_value = 98 'b' (decimal and character)
+a /c getchar_return_value = 97 'a' (decimal and character)
+n /c getchar_return_value = 110 'n' (decimal and character)
+a /c getchar_return_value = 97 'a' (decimal and character)
+n /c getchar_return_value = 110 'n' (decimal and character)
+a /c getchar_return_value = 97 'a' (decimal and character)
+However, at the end, I got the following for the value of "getchar_return_value":
+/c getchar_return_value = -1 '\377'
+/x getchar_return_value = 0xffffffff
+I am assuming that the last value for "getchar_return_value" represents that there is no more input to be read from a file or an end of file.
+
+Now that you have used gdb, exit out of the program and say ddd lab1. Can you figure out how to set a
+breakpoint at this (printf("The keyboard values are: \n");) line of the program using the graphical interface?
+After running ddd lab1, I did the following:
+File -> Open Source... -> lab1_func.c -> Open
+Then, while holding the right mouse button over the line number where I wanted to place a breakpoint (printf("The keyboard values are: \n");), I clicked "Break at printf". Then, I clicked on the red STOP sign called break. A red STOP sign appeared on the window.
+---
+
+17. Describe how you created the breakpoint in your program while using ddd instead of gdb.
+After running ddd lab1, I did the following:
+File -> Open Source... -> lab1_func.c -> Open
+Then, while holding the right mouse button over the line number where I wanted to place a breakpoint (printf("The keyboard values are: \n");), I clicked "Break at printf". Then, I clicked on the red STOP sign called break. A red STOP sign appeared on the window.
+
+18. Edit the Makefile. On the line that starts out "gcc_opt =" close to the top of the file, put " -D DEBUG" (do not put the double quotes in the file). Now say "touch lab1.c". Rerun the program using 6 and banana. Does the output change? If so, how?
+Yes, the output changes. It prints "returned from function" at the end of the program. In other words, here is the output:
+This program reads in a number, then a series of keyboard characters. The number
+indicates how many characters follows. The number can be no higher than 25.
+Then the specified number of characters follow.  These characters can be any
+key on a regular keyboard.
+Please enter the number of entries, followed by the enter/return key: 6
+entering function
+enter the 6 characters: banana
+The keyboard values are:
+b
+a
+n
+a
+n
+a
+returned from function
+
+19. What do you think of the make command? [2-3 sentences]
+It simplified the workflow by making it easier to create my .zip file and ensure that it contained the correct files for submission. It took me some while to understand the Makefiles, but I think it will most likely save me a lot of time in the future if I learn it early on. The make -r command also made it easier to create my executable (.exe) file.
