@@ -6,7 +6,6 @@
 # */
 
 # Name: Danny Kan {kan.74@osu.edu}
-# Date of Submission: February 1, 2024
 
 # comments in a Makefile start with sharp
 
