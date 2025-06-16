@@ -1,0 +1,97 @@
+__Author:__ Danny Kan
+
+I certify that I completed all of the work myself with no aid from anyone aside from the instructor or the undergraduate graders.
+
+### Part 1: Implementing a Stack
+
+---
+
+### Question 1
+Not sure what is considered a "very cool" word with Latin roots. Please refer to the following site: https://www.wordreference.com/definition/-pel-#:~:text=%2Dpel%2D%2C%20root.,%2C%20propeller%2C%20repel%2C%20repellant. I think the word could be either push or pop.
+
+### Question 2
+The advantage of Stack1 is its space complexity (i.e., Stack1 is more memory efficient) since it allocates a new block of memory when a new element is pushed to the stack. The disadvantage of Stack1 is its time complexity (i.e., Stack1 is more time inefficient) since calling malloc, calloc, and realloc requires an extended amount of time. The advantage of Stack2 is its time complexity (i.e., Stack2 is more time efficient) due to dynamic table resizing (i.e., table doubling / halving) since there are less calls to malloc, calloc, and realloc. The disadvantage of Stack2 is its space complexity (i.e., Stack2 is more memory inefficient) since it may allocate twice the amount of memory by doubling the table size for an extra element. For instance, if there are 31 elements in the stack, inserting an extra element for a total of 32 elements would cause the table size to double in size despite not necessarily having the need for those empty slots.
+
+Please refer to Section 16.4: Dynamic Tables in CLRS -> https://dl.ebooksworld.ir/books/Introduction.to.Algorithms.4th.Leiserson.Stein.Rivest.Cormen.MIT.Press.9780262046305.EBooksWorld.ir.pdf
+
+### Question 3
+Prior to performing any timing tests, I think the Stack2 implementation which uses table doubling / halving will be faster than the Stack1 implementation which uses a singly-linked list data structure.
+
+### Question 4
+When implementing Stack1 and Stack2, void pointers made it easier to implement the Stack data structure in the sense that it allowed us to manipulate various data types. In other words, it allows the Stack to work with other data types besides just integers. We cannot dereference a void pointer, but can use it as a form of manipulation when implementing a new data structure such as a Stack, Queue, Set, etc.
+
+### Part 2: Timing C Programs
+
+---
+
+### Question 1
+We compute the CPU time by finding the difference in time (i.e., delta = end_time - start_time) as a double and then diving by CPU clocks per second. However, according to the following site: https://www.gnu.org/software/libc/manual/html_node/CPU-Time.html, different computers and operating systems vary wildly in how they keep track of CPU time. It is common for the internal processor clock to have a resolution somewhere between a hundredth and millionth of a second. Thus, the calculate CPU may not be a very accurate representation of the performance.
+
+### Question 2
+We can change the NUM_ENTRIES macro in our lab4.h header file from 200,000,000 to 100,000 or any smaller value. It is obvious that pushing and popping less elements will require less time. It is silly since the number added and removed must be large,
+otherwise the coarseness of the clock resolution will not let you see meaningful times.
+
+### Question 3
+Measuring the CPU time requires additional context (i.e., CPU time is not in a vacuum). CPU time handles the time complexity of our program, that is, how fast or slow our program executes. However, it does not consider space complexity, that is, how much or little memory space is required for our program to execute successfully. Thus, measuring only the CPU time may not be a good measure of the performance of our program.
+
+### Question 4
+The Stack2 implementation was faster than the Stack1 implementation just like I predicted. There was a significant difference in runtime between Stack2 and Stack1. Pushing and popping 200 million (i.e., 200,000,000) elements took 2.553662 seconds for Stack2 and 5.568654 seconds for Stack1, suggesting that Stack2 has better runtime by ~ a factor of 2. This makes sense since in our implementation of Stack1, we called malloc each time we pushed a new element to the stack. In our implementation of Stack2, we used malloc, calloc, and realloc only when the table filled up (i.e., there were less calls to malloc, calloc, and realloc).
+
+22.1 kB without the -g flag.
+22.1 kB without the -g flag and with the -O flag.
+
+### Question 5
+After recompiling my source files without the -g flag and with the -O flag and running the executable, I noticed that execution times decreased.
+
+Please refer to the following sites:
+https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html
+https://www.rapidtables.com/code/linux/gcc/gcc-o.html
+
+The reason why the execution times improved is because turning on optimization flags makes the compiler attempt to improve the performance and / or code size at the expense of compilation time and possibly the ability to debug the program.
+
+Similarly, with -O, the compiler tries to reduce code size and execution time, without performing any optimizations that take a great deal of compilation time.
+
+### Question 6
+After recompiling my source files without the -g flag and with the -O3 flag and running the executable, I noticed that execution times decreased even more since the -O3 flag turns on all optimizations specified by the -O2 flag including some additional ones.
+
+Please refer to the following site:
+https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html
+
+### Question 7
+Yes, there is a difference. The file size of the executable with -O3 > the file size of the executable with -O > the file size of the executable without any optimization flags. This makes sense since those flags are representative of various levels of code optimization. Thus, it is reasonable to expect the file sizes to be larger the more we attempt optimize.
+
+### Question 8
+The more we attempt to optimize, the longer it takes to compile our program (i.e., compilation time increases) since it requires more steps to improve performance to reduce code size and execution time.
+
+### Question 9
+Please refer to the following site:
+https://www.rapidtables.com/code/linux/gcc/gcc-o.html
+
+The reason there are so many optimization flags such as -O0, -O1, -O2, -O3, etc. is because they have their own pros and cons in terms of execution time, code size, memory usage as well as compile time. Some users may want to improve execution time and code size, however, the memory usage and compile time will suffer almost proportionally as a consequence. Thus, having more options allows the users to decide how much memory usage and compile time they are willing to sacrifice.
+
+### Part 3: Profiling
+
+---
+
+### Question 1
+While examining the call graph, I did not spot anything weird about any of the gprof outputs.
+
+### Question 2
+If we examine the call graph, specifically the % time column, which is the percentage of the total time that was spent in this function and its children, we see that pushing and popping elements to and from the stack ended up taking the most time in each implementation.
+
+### Question 3
+I do not think there is anything that I could do to shrink the time spent in each of those functions.
+
+### Question 4
+Profiling appears to suffer from the same sort of shortcomings that timing suffers from in the sense that I do not see anything related to memory usage in the call graph. When using profiling, we see information related to execution time and which portions of our program required the most amount of time.
+
+### Question 5
+Please refer to the following site:
+https://man7.org/linux/man-pages/man1/gprof.1.html
+
+The -b flag is interesting and useful for individuals that have experience working with gprof.
+According to the documentation,
+If the -b option is given, "gprof" doesn't print the verbose
+           blurbs that try to explain the meaning of all of the fields
+           in the tables.  This is useful if you intend to print out the
+           output, or are tired of seeing the blurbs.
